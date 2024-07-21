@@ -5,8 +5,8 @@ export const users = sqliteTable("user", {
   id: text("id")
     .primaryKey()
     .$defaultFn(() => generateId(15)),
-  email: text("email").unique(),
-  password: text("password"),
+  email: text("email").unique().notNull(),
+  password: text("password").notNull(),
 });
 
 export type User = typeof users.$inferSelect;
