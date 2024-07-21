@@ -9,15 +9,24 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@lucia-auth/adapter-drizzle": "^1.0.7",
+    "@node-rs/argon2": "^1.8.3",
     "babel-plugin-react-compiler": "0.0.0-experimental-696af53-20240625",
+    "better-sqlite3": "^11.1.2",
+    "drizzle-orm": "^0.32.0",
+    "lucia": "^3.2.0",
     "next": "15.0.0-rc.0",
     "react": "19.0.0-rc-512b09b2-20240718",
     "react-dom": "19.0.0-rc-512b09b2-20240718"
   },
   "devDependencies": {
+    "@types/better-sqlite3": "~7.6.11",
+    "@types/eslint": "~8.56.10",
     "@types/node": "^20",
     "@types/react": "^18",
     "@types/react-dom": "^18",
+    "dotenv": "^16.4.5",
+    "drizzle-kit": "^0.23.0",
     "eslint": "^8",
     "eslint-config-next": "15.0.0-rc.0",
     "postcss": "^8",
