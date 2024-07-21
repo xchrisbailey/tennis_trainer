@@ -1,26 +1,22 @@
-import { lucia, validateRequest } from "@/lib/auth";
-import { db } from "@/lib/db";
-import { users } from "@/lib/db/schema";
-import { hash, verify } from "@node-rs/argon2";
-import { eq } from "drizzle-orm";
-import { cookies } from "next/headers";
-import { redirect } from "next/navigation";
-import { z } from "zod";
+import { lucia, validateRequest } from '@/lib/auth';
+import { db } from '@/lib/db';
+import { users } from '@/lib/db/schema';
+import { hash, verify } from '@node-rs/argon2';
+import { eq } from 'drizzle-orm';
+import { cookies } from 'next/headers';
+import { redirect } from 'next/navigation';
+import { z } from 'zod';
 
 export async function logout_action() {
-  "use server";
+  'use server';
   const { session } = await validateRequest();
-  if (!session) return redirect("/");
+  if (!session) return redirect('/');
 
   await lucia.invalidateSession(session.id);
 
   const sessionCookie = lucia.createBlankSessionCookie();
-  cookies().set(
-    sessionCookie.name,
-    sessionCookie.value,
-    sessionCookie.attributes,
-  );
-  return redirect("/login");
+  cookies().set(sessionCookie.name, sessionCookie.value, sessionCookie.attributes);
+  return redirect('/login');
 }
 
 const login_form_schema = z.object({
@@ -29,7 +25,7 @@ const login_form_schema = z.object({
 });
 
 export async function login_action(form_data: FormData) {
-  "use server";
+  'use server';
 
   const {
     success: form_parse_success,
@@ -49,7 +45,7 @@ export async function login_action(form_data: FormData) {
 
   if (!user) {
     return {
-      error: "Invalid email or password",
+      error: 'Invalid email or password',
     };
   }
 
@@ -62,29 +58,23 @@ export async function login_action(form_data: FormData) {
 
   if (!valid_password) {
     return {
-      error: "Invalid email or password",
+      error: 'Invalid email or password',
     };
   }
 
   const session = await lucia.createSession(user.id, {});
   const sessionCookie = lucia.createSessionCookie(session.id);
-  cookies().set(
-    sessionCookie.name,
-    sessionCookie.value,
-    sessionCookie.attributes,
-  );
-  return redirect("/");
+  cookies().set(sessionCookie.name, sessionCookie.value, sessionCookie.attributes);
+  return redirect('/');
 }
 
 const register_form_schema = z.object({
   email: z.string().email(),
-  password: z
-    .string()
-    .min(6, { message: "Password must be at least 6 characters long" }),
+  password: z.string().min(6, { message: 'Password must be at least 6 characters long' }),
 });
 
 export async function register_action(formData: FormData) {
-  "use server";
+  'use server';
 
   const {
     success: form_parse_success,
@@ -116,14 +106,10 @@ export async function register_action(formData: FormData) {
 
     const session = await lucia.createSession(user[0].id, {});
     const sessionCookie = lucia.createSessionCookie(session.id);
-    cookies().set(
-      sessionCookie.name,
-      sessionCookie.value,
-      sessionCookie.attributes,
-    );
+    cookies().set(sessionCookie.name, sessionCookie.value, sessionCookie.attributes);
   } catch (error) {
     return {
-      error: "An unknown error occurred: " + error,
+      error: 'An unknown error occurred: ' + error,
     };
   }
 }
