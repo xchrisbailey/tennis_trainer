@@ -101,6 +101,7 @@ export async function register_action(formData: FormData) {
       .values({
         email: data.email,
         password: password_hash,
+        role: 'user',
       })
       .returning();
 
