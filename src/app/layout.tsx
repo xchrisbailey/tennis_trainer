@@ -1,8 +1,11 @@
+import { validateRequest } from '@/lib/auth';
 import type { Metadata } from 'next';
 import { Inter } from 'next/font/google';
-import './globals.css';
+import 'react-toastify/dist/ReactToastify.css';
 import { logout_action } from './(auth)/_actions';
-import { validateRequest } from '@/lib/auth';
+import './globals.css';
+import { Toaster } from 'react-hot-toast';
+import { Suspense } from 'react';
 
 const inter = Inter({
   subsets: ['latin'],
@@ -24,15 +27,18 @@ export default async function RootLayout({
   return (
     <html lang="en" className={`${inter.variable}`}>
       <body>
-        <header className="flex justify-between items-center py-2 px-3">
-          <div className="text-3xl lowercase">Tennis Trainer</div>
-          {user && (
-            <form action={logout_action}>
-              <button>logout</button>
-            </form>
-          )}
-        </header>
-        <main className="container mx-auto">{children}</main>
+        <Suspense>
+          <Toaster />
+          <header className="flex justify-between items-center py-2 px-3">
+            <div className="text-3xl lowercase">Tennis Trainer</div>
+            {user && (
+              <form action={logout_action}>
+                <button>logout</button>
+              </form>
+            )}
+          </header>
+          <main className="container mx-auto">{children}</main>
+        </Suspense>
       </body>
     </html>
   );
