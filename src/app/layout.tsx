@@ -4,7 +4,11 @@ import './globals.css';
 import { logout_action } from './(auth)/_actions';
 import { validateRequest } from '@/lib/auth';
 
-const inter = Inter({ subsets: ['latin'] });
+const inter = Inter({
+  subsets: ['latin'],
+  display: 'swap',
+  variable: '--font-inter',
+});
 
 export const metadata: Metadata = {
   title: 'Tennis Trainer',
@@ -18,8 +22,8 @@ export default async function RootLayout({
 }>) {
   const { user } = await validateRequest();
   return (
-    <html lang="en">
-      <body className={inter.className}>
+    <html lang="en" className={`${inter.variable}`}>
+      <body>
         <header className="flex justify-between items-center py-2 px-3">
           <div className="text-3xl lowercase">Tennis Trainer</div>
           {user && (
