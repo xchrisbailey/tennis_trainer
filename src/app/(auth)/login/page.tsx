@@ -1,6 +1,6 @@
+import { login_action } from '@/actions/user_actions';
 import { validateRequest } from '@/lib/auth';
 import { redirect } from 'next/navigation';
-import { login_action } from '../_actions';
 
 export default async function Page() {
   const { user } = await validateRequest();
