@@ -19,6 +19,8 @@
     "next": "15.0.0-rc.0",
     "react": "19.0.0-rc-512b09b2-20240718",
     "react-dom": "19.0.0-rc-512b09b2-20240718",
+    "react-hot-toast": "^2.4.1",
+    "react-toastify": "^10.0.5",
     "zod": "^3.23.8"
   },
   "devDependencies": {

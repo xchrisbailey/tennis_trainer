@@ -1,8 +1,9 @@
+import { validateRequest } from '@/lib/auth';
 import type { Metadata } from 'next';
 import { Inter } from 'next/font/google';
-import './globals.css';
+import 'react-toastify/dist/ReactToastify.css';
 import { logout_action } from './(auth)/_actions';
-import { validateRequest } from '@/lib/auth';
+import './globals.css';
 
 const inter = Inter({
   subsets: ['latin'],
