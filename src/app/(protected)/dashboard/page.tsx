@@ -1,13 +1,16 @@
 import { validateRequest } from '@/lib/auth';
-import { DashboardView } from './dashboard_view';
-import { Suspense } from 'react';
+import { redirect } from 'next/navigation';
 
 export default async function Page() {
   const { user } = await validateRequest();
 
+  if (!user) {
+    return redirect('/');
+  }
+
   return (
-    <Suspense>
-      <DashboardView user={user} />
-    </Suspense>
+    <>
+      <h1>Dashboard</h1>
+    </>
   );
 }

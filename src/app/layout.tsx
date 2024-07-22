@@ -4,8 +4,6 @@ import { Inter } from 'next/font/google';
 import 'react-toastify/dist/ReactToastify.css';
 import { logout_action } from './(auth)/_actions';
 import './globals.css';
-import { Toaster } from 'react-hot-toast';
-import { Suspense } from 'react';
 
 const inter = Inter({
   subsets: ['latin'],
@@ -27,7 +25,6 @@ export default async function RootLayout({
   return (
     <html lang="en" className={`${inter.variable}`}>
       <body>
-        <Toaster />
         <header className="flex justify-between items-center py-2 px-3">
           <div className="text-3xl lowercase">Tennis Trainer</div>
           {user && (
