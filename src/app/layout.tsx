@@ -27,18 +27,16 @@ export default async function RootLayout({
   return (
     <html lang="en" className={`${inter.variable}`}>
       <body>
-        <Suspense>
-          <Toaster />
-          <header className="flex justify-between items-center py-2 px-3">
-            <div className="text-3xl lowercase">Tennis Trainer</div>
-            {user && (
-              <form action={logout_action}>
-                <button>logout</button>
-              </form>
-            )}
-          </header>
-          <main className="container mx-auto">{children}</main>
-        </Suspense>
+        <Toaster />
+        <header className="flex justify-between items-center py-2 px-3">
+          <div className="text-3xl lowercase">Tennis Trainer</div>
+          {user && (
+            <form action={logout_action}>
+              <button>logout</button>
+            </form>
+          )}
+        </header>
+        <main className="container mx-auto">{children}</main>
       </body>
     </html>
   );
