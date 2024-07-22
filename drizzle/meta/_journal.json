@@ -8,6 +8,13 @@
       "when": 1721545272991,
       "tag": "0000_public_shockwave",
       "breakpoints": true
+    },
+    {
+      "idx": 1,
+      "version": "6",
+      "when": 1721670316399,
+      "tag": "0001_wealthy_nicolaos",
+      "breakpoints": true
     }
   ]
 }

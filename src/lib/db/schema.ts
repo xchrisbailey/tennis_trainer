@@ -21,3 +21,13 @@ export const sessions = sqliteTable('session', {
 });
 
 export type Session = typeof sessions.$inferSelect;
+
+export const drills = sqliteTable('drill', {
+  id: text('id')
+    .primaryKey()
+    .$defaultFn(() => generateId(15)),
+  date: text('date').notNull(),
+  price: integer('price').notNull(),
+  player_capacity: integer('player_capacity').notNull(),
+  location: text('location').notNull(),
+});
